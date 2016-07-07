@@ -1,16 +1,16 @@
-#pragma once
+п»ї#pragma once
 #include "Stack.h"
 
 template <class T>
 class TQueue : public TStack <T>
 {
 protected:
-	int Li; // индекс первого элемента структуры
-	virtual int GetNextIndex(int index) // получить следующий индекс
+	int Li; // РёРЅРґРµРєСЃ РїРµСЂРІРѕРіРѕ СЌР»РµРјРµРЅС‚Р° СЃС‚СЂСѓРєС‚СѓСЂС‹
+	virtual int GetNextIndex(int index) // РїРѕР»СѓС‡РёС‚СЊ СЃР»РµРґСѓСЋС‰РёР№ РёРЅРґРµРєСЃ
 	{ return ++index%MemSize; }
 public:
 	TQueue(int Size=DefMemSize) : TStack(Size), Li(0) {}
-	virtual T Get () // взять из очереди с удалением (#Л1)
+	virtual T Get () // РІР·СЏС‚СЊ РёР· РѕС‡РµСЂРµРґРё СЃ СѓРґР°Р»РµРЅРёРµРј (#Р›1)
 	{
 		T temp;
 		if (pMem == NULL) throw "No memory";

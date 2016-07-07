@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 #include <iostream>
 
 using namespace std;
@@ -9,15 +9,15 @@ enum TMemType { MEM_HOLDER, MEM_RENTER };
 template <class T>
 class TDataRoot
 {
-protected: // поля
-	T* pMem; // память для СД
-	int MemSize; // размер памяти для СД
-	int DataCount; // к-во элементов в СД
-	TMemType MemType; // режим управления памятью
-protected: // методы
-	void SetMem ( void *pMem, int Size ) // задание памяти
+protected: // РїРѕР»СЏ
+	T* pMem; // РїР°РјСЏС‚СЊ РґР»СЏ РЎР”
+	int MemSize; // СЂР°Р·РјРµСЂ РїР°РјСЏС‚Рё РґР»СЏ РЎР”
+	int DataCount; // Рє-РІРѕ СЌР»РµРјРµРЅС‚РѕРІ РІ РЎР”
+	TMemType MemType; // СЂРµР¶РёРј СѓРїСЂР°РІР»РµРЅРёСЏ РїР°РјСЏС‚СЊСЋ
+protected: // РјРµС‚РѕРґС‹
+	void SetMem ( void *pMem, int Size ) // Р·Р°РґР°РЅРёРµ РїР°РјСЏС‚Рё
 	{
-		if ( MemType == MEM_HOLDER ) delete pMem; // ! информация не сохраняется
+		if ( MemType == MEM_HOLDER ) delete pMem; // ! РёРЅС„РѕСЂРјР°С†РёСЏ РЅРµ СЃРѕС…СЂР°РЅСЏРµС‚СЃСЏ
 		pMem = (T*) pMem;
 		MemType = MEM_RENTER;
 		MemSize = Size;
@@ -26,11 +26,11 @@ public:
 	TDataRoot (int Size=DefMemSize) : DataCount(0), MemSize(Size)
 	{
 		if ( Size == 0 ) 
-		{ // память будет установлена методом SetMem
+		{ // РїР°РјСЏС‚СЊ Р±СѓРґРµС‚ СѓСЃС‚Р°РЅРѕРІР»РµРЅР° РјРµС‚РѕРґРѕРј SetMem
 			pMem = NULL; MemType = MEM_RENTER;
 		}
 		else 
-		{ // память выделяется объектом
+		{ // РїР°РјСЏС‚СЊ РІС‹РґРµР»СЏРµС‚СЃСЏ РѕР±СЉРµРєС‚РѕРј
 			pMem = new T[MemSize];
 			MemType = MEM_HOLDER;
 		}
@@ -40,20 +40,20 @@ public:
 		if (MemType == MEM_HOLDER) delete pMem;
 		pMem = NULL;
 	}
-	virtual int IsEmpty() const // контроль пустоты СД
+	virtual int IsEmpty() const // РєРѕРЅС‚СЂРѕР»СЊ РїСѓСЃС‚РѕС‚С‹ РЎР”
 	{
 		return DataCount==0;
 	}
-	virtual int IsFull() const // контроль переполнения СД
+	virtual int IsFull() const // РєРѕРЅС‚СЂРѕР»СЊ РїРµСЂРµРїРѕР»РЅРµРЅРёСЏ РЎР”
 	{
 		return DataCount>=MemSize;
 	}
-	virtual void Put(const T &Val) =0; // добавить значение
-	virtual T Get() =0;            // извлечь значение
-	// служебные методы
-	virtual void Print() = 0;  // печать значений
-	virtual int IsValid() = 0; // тестирование структуры
-	// дружественные классы
+	virtual void Put(const T &Val) =0; // РґРѕР±Р°РІРёС‚СЊ Р·РЅР°С‡РµРЅРёРµ
+	virtual T Get() =0;            // РёР·РІР»РµС‡СЊ Р·РЅР°С‡РµРЅРёРµ
+	// СЃР»СѓР¶РµР±РЅС‹Рµ РјРµС‚РѕРґС‹
+	virtual void Print() = 0;  // РїРµС‡Р°С‚СЊ Р·РЅР°С‡РµРЅРёР№
+	virtual int IsValid() = 0; // С‚РµСЃС‚РёСЂРѕРІР°РЅРёРµ СЃС‚СЂСѓРєС‚СѓСЂС‹
+	// РґСЂСѓР¶РµСЃС‚РІРµРЅРЅС‹Рµ РєР»Р°СЃСЃС‹
 	friend class TMultiStack;
 	friend class TSuperMultiStack;
 	friend class TComplexMultiStack;

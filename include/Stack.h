@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 #include "DataRoot.h"
 
 #define StackID 101
@@ -7,12 +7,12 @@ template <class T>
 class TStack : public TDataRoot <T>
 {
 protected:
-	int Hi; // индекс последнего элемента структуры
-	virtual int GetNextIndex(int index) // получить следующий индекс
+	int Hi; // РёРЅРґРµРєСЃ РїРѕСЃР»РµРґРЅРµРіРѕ СЌР»РµРјРµРЅС‚Р° СЃС‚СЂСѓРєС‚СѓСЂС‹
+	virtual int GetNextIndex(int index) // РїРѕР»СѓС‡РёС‚СЊ СЃР»РµРґСѓСЋС‰РёР№ РёРЅРґРµРєСЃ
 	{ return ++index;}
 public:
 	TStack ( int Size=DefMemSize ): TDataRoot(Size) { Hi=-1; }
-	virtual void Put(const T &val) // положить в стек (#Л1)
+	virtual void Put(const T &val) // РїРѕР»РѕР¶РёС‚СЊ РІ СЃС‚РµРє (#Р›1)
 	{
 		if (pMem == NULL) throw "No memory";
 		else if (IsFull()) throw "Stack is full";
@@ -22,7 +22,7 @@ public:
 			DataCount++;
 		}
 	}
-	virtual T Get() // взять из стека с удалением
+	virtual T Get() // РІР·СЏС‚СЊ РёР· СЃС‚РµРєР° СЃ СѓРґР°Р»РµРЅРёРµРј
 	{
 		T temp;
 		if (pMem == NULL) throw "No memory";
@@ -35,21 +35,21 @@ public:
 		return temp;
 	}
 protected:
-	// служебные методы
-	virtual int IsValid() // тестирование структуры
+	// СЃР»СѓР¶РµР±РЅС‹Рµ РјРµС‚РѕРґС‹
+	virtual int IsValid() // С‚РµСЃС‚РёСЂРѕРІР°РЅРёРµ СЃС‚СЂСѓРєС‚СѓСЂС‹
 	{
 		int res = 0;
 		if ( pMem == NULL ) res = 1;
 		if ( MemSize < DataCount ) res += 2;
 		return res;
 	}
-	virtual void Print() // печать значений
+	virtual void Print() // РїРµС‡Р°С‚СЊ Р·РЅР°С‡РµРЅРёР№
 	{
 		for (int i=0; i<DataCount; i++)
 			cout << pMem[i];
 		cout << endl;
 	}
-	virtual void CopyToVector(T v[]) // копировать в очередь
+	virtual void CopyToVector(T v[]) // РєРѕРїРёСЂРѕРІР°С‚СЊ РІ РѕС‡РµСЂРµРґСЊ
 	{
 		for ( int i=0; i<DataCount; i++)
 			v[i] = pMem[i];
